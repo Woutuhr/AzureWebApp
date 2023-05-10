@@ -1,5 +1,7 @@
 # Workshop Azure AD
 
+> **Let op!** Staat jouw Azure Portal in het Nederlands, zullen de onderstaand genoemde termen de vertaalde variant zijn.
+
 ## Azure AD Configuratie
 
 1. Ga naar de [Azure Portal](https://portal.azure.com) en log in met je account.
@@ -14,7 +16,7 @@
 1. Maak een self signed certificate aan, dit kun je in Visual Studio doen door te klikken op **Tools** -> **Command Line** -> **Developer Command Prompt**.
 2. Voer het volgende commando uit: ``` dotnet dev-certs https -ep ./certificate.crt --trust ```
 3. Open de **Azure Portal** en ga naar **Azure Active Directory** -> **App registrations** -> **Jouw App Registratie**.
-4. Klik op **Certificaten and secrets** -> **Upload certificate**.
+4. Klik op **Certificaten and secrets** -> **Upload certificate**. <br>*Dit certificaat is te vinden in de root map van dit project*
 5. Geef het certificaat een beschrijving/naam en klik op **Add**.
 6. Kopieer de thumbprint van het net geuploade certificaat.
 7. Ga in Visual Studio naar de appsettings.json en plak de thumbprint in het veld **CertificateThumbprint**.
@@ -24,7 +26,7 @@
 
 ## Applicatie registreren in Azure AD
 1. Ga in de **Azure Portal** naar **Azure Active Directory** -> **App registrations** -> **Jouw App Registratie**.
-2. Klik onder **Manage** op **Authentication**.
+2. Klik op **Authentication** (onder het kopje **Manage**).
 3. In platform configuration klik op **Add a platform**.
 4. Kies voor **Web**.
 5. Voer bij **Redirect URIs** de volgende url in: ```https://localhost:7283/signin-oidc```.
@@ -49,15 +51,16 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
     options.Filters.Add(new AuthorizeFilter(policy));
 }).AddMicrosoftIdentityUI();
 ```
+> Mogelijk wordt er een namespace niet automatisch geïmporteerd , deze kan je zelf toevoegen door: `using Microsoft.Identity.Web.UI` toe te voegen bij je usings.
 
-2. Voeg boven **app.useAuthorization();** de volgende regel toe:
+3. Voeg boven **app.UseAuthorization();** de volgende regel toe:
 ```csharp
 app.useAuthentication();
 ```
 
-3. Klik met Rechtermuis op de **Views -> Shared** folder en klik op **Add** -> **View** -> **Razor View (Empty)**.
-4. Noem deze **_LoginPartial.cshtml** en klik op add.
-5. Voeg de volgende code toe in het aangemaakte bestand.
+4. Klik met Rechtermuis op de **Shared** folder (in de **Views** folder) en klik op **Add** -> **View** -> **Razor View (Empty)**.
+5. Noem deze **_LoginPartial.cshtml** en klik op add.
+6. Voeg de volgende code toe in het aangemaakte bestand.
 ```cshtml
 @using System.Security.Principal
 
@@ -79,17 +82,18 @@ else
 }
 </ul>
 ```
-6. Open de **_Layout.cshtml** en voeg de volgende code toe op regel **29**.
+7. Open de **_Layout.cshtml** en voeg de volgende code toe op regel **29**.
 ```cshtml
 <partial name="_LoginPartial" />
 ```
 
 ## Database
 
-1. Open de **appsettings.json**.
-2. Voeg een connection string to aan een lokale database die bij jou draait.
-3. Open de **Tools -> Nuget Package Manager -> Package Manager Console**.
-4. Voer het volgende commando uit: ```Update-Database```.
+1. Maak een MSSQL database aan.
+2. Open de **appsettings.json**.
+3. Voeg een connection string toe voor de eerder toegevoegde database.
+4. Open de **Tools -> Nuget Package Manager -> Package Manager Console**.
+5. Voer het volgende commando uit: ```Update-Database```.
 
 ## Starten maar
 
