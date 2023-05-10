@@ -16,7 +16,7 @@
 1. Maak een self signed certificate aan, dit kun je in Visual Studio doen door te klikken op **Tools** -> **Command Line** -> **Developer Command Prompt**.
 2. Voer het volgende commando uit: ``` dotnet dev-certs https -ep ./certificate.crt --trust ```
 3. Open de **Azure Portal** en ga naar **Azure Active Directory** -> **App registrations** -> **Jouw App Registratie**.
-4. Klik op **Certificaten and secrets** -> **Upload certificate**. <br>*Dit certificaat is te vinden in root map van dit project*
+4. Klik op **Certificaten and secrets** -> **Upload certificate**. <br>*Dit certificaat is te vinden in de root map van dit project*
 5. Geef het certificaat een beschrijving/naam en klik op **Add**.
 6. Kopieer de thumbprint van het net geuploade certificaat.
 7. Ga in Visual Studio naar de appsettings.json en plak de thumbprint in het veld **CertificateThumbprint**.
@@ -58,9 +58,9 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 app.useAuthentication();
 ```
 
-1. Klik met Rechtermuis op de **Shared** folder (in de **Views** folder) en klik op **Add** -> **View** -> **Razor View (Empty)**.
-2. Noem deze **_LoginPartial.cshtml** en klik op add.
-3. Voeg de volgende code toe in het aangemaakte bestand.
+4. Klik met Rechtermuis op de **Shared** folder (in de **Views** folder) en klik op **Add** -> **View** -> **Razor View (Empty)**.
+5. Noem deze **_LoginPartial.cshtml** en klik op add.
+6. Voeg de volgende code toe in het aangemaakte bestand.
 ```cshtml
 @using System.Security.Principal
 
@@ -82,7 +82,7 @@ else
 }
 </ul>
 ```
-6. Open de **_Layout.cshtml** en voeg de volgende code toe op regel **29**.
+7. Open de **_Layout.cshtml** en voeg de volgende code toe op regel **29**.
 ```cshtml
 <partial name="_LoginPartial" />
 ```
