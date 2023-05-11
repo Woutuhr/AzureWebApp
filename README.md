@@ -55,7 +55,7 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 
 3. Voeg boven **app.UseAuthorization();** de volgende regel toe:
 ```csharp
-app.useAuthentication();
+app.UseAuthentication();
 ```
 
 4. Klik met Rechtermuis op de **Shared** folder (in de **Views** folder) en klik op **Add** -> **View** -> **Razor View (Empty)**.
